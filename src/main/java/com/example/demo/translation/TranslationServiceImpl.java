@@ -23,8 +23,12 @@ public class TranslationServiceImpl implements TranslationService {
 
 	@Override
 	public Translation getTranslation(String id) {
-		java.util.Optional<Translation> translation= this.transRepo.findById(id);
-		return translation.get();	}
+		java.util.Optional<Translation> translation = this.transRepo.findById(id);
+		if (translation.isPresent()) {
+			return translation.get();
+		}
+		return null;
+	}
 
 	@Override
 	public long getNumberTranslations() {
